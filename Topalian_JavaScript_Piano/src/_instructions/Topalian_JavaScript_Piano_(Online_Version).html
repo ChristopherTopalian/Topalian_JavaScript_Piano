@@ -1,0 +1,2147 @@
+<!-- Dedicated to God the Father -->
+<!-- All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024 -->
+<!-- https://github.com/ChristopherTopalian -->
+<!-- https://github.com/ChristopherAndrewTopalian -->
+<!-- Topalian_JavaScript_Piano(Online_Version).html -->
+<!-- Version 001 - (2024-09-19) -->
+
+<html>
+<head>
+<title> Topalian JavaScript Piano </title>
+
+<style>
+
+/* style001.css */
+
+body
+{
+    background-color: rgb(30, 30, 30);
+}
+
+.natural
+{
+    width: 25px;
+    background-color: rgb(255, 255, 255);
+    border: solid 1px rgb(0, 0, 0);
+    font-family: arial;
+    font-size: 17px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    text-shadow: 1px 1px black;
+    user-select: none;
+}
+
+.natural:active
+{
+    transform: translateY(3px);
+    background-color: rgb(200, 200, 200);
+    border-color: rgb(0, 255, 255);
+    box-shadow: inset 0 4px 5px rgba(0, 0, 0, 0.5);
+    color: rgb(255, 0, 255);
+}
+
+.sharp
+{
+    width: 25px;
+    background-color: rgb(0, 0, 0);
+    border: solid 1px rgb(0, 0, 0);
+    text-align: center;
+    font-family: Arial;
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px black;
+    user-select: none;
+}
+
+.sharp:active
+{
+    transform: translateY(3px);
+    background-color: rgb(200, 200, 200);
+    border-color: rgb(0, 255, 255);
+    color: rgb(255, 0, 255);
+    box-shadow: inset 0 4px 5px rgba(0, 0, 0, 0.5);
+}
+
+button
+{
+    background-color: rgb(0, 77, 129);
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(100, 100, 255);
+    border-radius: 4px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    opacity: 1.0;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+button:hover
+{
+    background-color: rgb(6, 31, 47);
+    border-color: rgb(0, 255, 255);
+    color: rgb(0, 255, 255);
+}
+
+button:active
+{
+    color: rgb(255, 0, 255);
+}
+
+/* -- */
+
+/* Dedicated to God the Father */
+/* All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024 */
+/* https://github.com/ChristopherTopalian */
+/* https://github.com/ChristopherAndrewTopalian */
+
+</style>
+
+<script>
+
+// shortcuts.js
+
+function ge(whichId)
+{
+    let result = document.getElementById(whichId);
+    return result;
+}
+
+function ce(whichType)
+{
+    let result = document.createElement(whichType);
+    return result;
+}
+
+function ba(whichElement)
+{
+    let result = document.body.append(whichElement);
+    return result;
+}
+
+function ct(whichText)
+{
+    let result = document.createTextNode(whichText);
+    return result;
+}
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+// worldVariables.js
+
+let online = true;
+
+let natural = 'rgb(255, 255, 255)';
+let sharp = 'rgb(0, 0, 0)';
+let highlight = 'rgb(0, 255, 255)';
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+// notes.js
+
+let notes =
+[
+    {
+        name: 'c1',
+        soundFileOffline: 'src/media/notes/c1.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/c1.mp4',
+        octave: 1
+    },
+
+    {
+        name: 'csharp1',
+        soundFileOffline: 'src/media/notes/csharp1.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/csharp1.mp4',
+        octave: 1
+    },
+
+    {
+        name: 'd1',
+        soundFileOffline: 'src/media/notes/d1.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/d1.mp4',
+        octave: 1
+    },
+
+    {
+        name: 'dsharp1',
+        soundFileOffline: 'src/media/notes/dsharp1.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/dsharp1.mp4',
+        octave: 1
+    },
+
+    {
+        name: 'e1',
+        soundFileOffline: 'src/media/notes/e1.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/e1.mp4',
+        octave: 1
+    },
+
+    {
+        name: 'f1',
+        soundFileOffline: 'src/media/notes/f1.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/f1.mp4',
+        octave: 1
+    },
+
+    {
+        name: 'fsharp1',
+        soundFileOffline: 'src/media/notes/fsharp1.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/fsharp1.mp4',
+        octave: 1
+    },
+
+    {
+        name: 'g1',
+        soundFileOffline: 'src/media/notes/g1.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/g1.mp4',
+        octave: 1
+    },
+
+    {
+        name: 'gsharp1',
+        soundFileOffline: 'src/media/notes/gsharp1.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/gsharp1.mp4',
+        octave: 1
+    },
+
+    {
+        name: 'a1',
+        soundFileOffline: 'src/media/notes/a1.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/a1.mp4',
+        octave: 1
+    },
+
+    {
+        name: 'asharp1',
+        soundFileOffline: 'src/media/notes/asharp1.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/asharp1.mp4',
+        octave: 1
+    },
+
+    {
+        name: 'b1',
+        soundFileOffline: 'src/media/notes/b1.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/b1.mp4',
+        octave: 1
+    },
+
+    {
+        name: 'c2',
+        soundFileOffline: 'src/media/notes/c2.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/c2.mp4',
+        octave: 2
+    },
+
+    {
+        name: 'csharp2',
+        soundFileOffline: 'src/media/notes/csharp2.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/csharp2.mp4',
+        octave: 2
+    },
+
+    {
+        name: 'd2',
+        soundFileOffline: 'src/media/notes/d2.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/d2.mp4',
+        octave: 2
+    },
+
+    {
+        name: 'dsharp2',
+        soundFileOffline: 'src/media/notes/dsharp2.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/dsharp2.mp4',
+        octave: 2
+    },
+
+    {
+        name: 'e2',
+        soundFileOffline: 'src/media/notes/e2.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/e2.mp4',
+        octave: 2
+    },
+
+    {
+        name: 'f2',
+        soundFileOffline: 'src/media/notes/f2.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/f2.mp4',
+        octave: 2
+    },
+
+    {
+        name: 'fsharp2',
+        soundFileOffline: 'src/media/notes/fsharp2.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/fsharp2.mp4',
+        octave: 2
+    },
+
+    {
+        name: 'g2',
+        soundFileOffline: 'src/media/notes/g2.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/g2.mp4',
+        octave: 2
+    },
+
+    {
+        name: 'gsharp2',
+        soundFileOffline: 'src/media/notes/gsharp2.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/gsharp2.mp4',
+        octave: 2
+    },
+
+    {
+        name: 'a2',
+        soundFileOffline: 'src/media/notes/a2.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/a2.mp4',
+        octave: 2
+    },
+
+    {
+        name: 'asharp2',
+        soundFileOffline: 'src/media/notes/asharp2.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/asharp2.mp4',
+        octave: 2
+    },
+
+    {
+        name: 'b2',
+        soundFileOffline: 'src/media/notes/b2.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/b2.mp4',
+        octave: 2
+    },
+
+    {
+        name: 'c3',
+        soundFileOffline: 'src/media/notes/c3.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/c3.mp4',
+        octave: 3
+    },
+
+    {
+        name: 'csharp3',
+        soundFileOffline: 'src/media/notes/csharp3.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/csharp3.mp4',
+        octave: 3
+    },
+
+    {
+        name: 'd3',
+        soundFileOffline: 'src/media/notes/d3.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/d3.mp4',
+        octave: 3
+    },
+
+    {
+        name: 'dsharp3',
+        soundFileOffline: 'src/media/notes/dsharp3.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/dsharp3.mp4',
+        octave: 3
+    },
+
+    {
+        name: 'e3',
+        soundFileOffline: 'src/media/notes/e3.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/e3.mp4',
+        octave: 3
+    },
+
+    {
+        name: 'f3',
+        soundFileOffline: 'src/media/notes/f3.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/f3.mp4',
+        octave: 3
+    },
+
+    {
+        name: 'fsharp3',
+        soundFileOffline: 'src/media/notes/fsharp3.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/fsharp3.mp4',
+        octave: 3
+    },
+
+    {
+        name: 'g3',
+        soundFileOffline: 'src/media/notes/g3.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/g3.mp4',
+        octave: 3
+    },
+
+    {
+        name: 'gsharp3',
+        soundFileOffline: 'src/media/notes/gsharp3.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/gsharp3.mp4',
+        octave: 3
+    },
+
+    {
+        name: 'a3',
+        soundFileOffline: 'src/media/notes/a3.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/a3.mp4',
+        octave: 3
+    },
+
+    {
+        name: 'asharp3',
+        soundFileOffline: 'src/media/notes/asharp3.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/asharp3.mp4',
+        octave: 3
+    },
+
+    {
+        name: 'b3',
+        soundFileOffline: 'src/media/notes/b3.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/b3.mp4',
+        octave: 3
+    },
+
+    {
+        name: 'c4',
+        soundFileOffline: 'src/media/notes/c4.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/c4.mp4',
+        octave: 4
+    },
+
+    {
+        name: 'csharp4',
+        soundFileOffline: 'src/media/notes/csharp4.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/csharp4.mp4',
+        octave: 4
+    },
+
+    {
+        name: 'd4',
+        soundFileOffline: 'src/media/notes/d4.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/d4.mp4',
+        octave: 4
+    },
+
+    {
+        name: 'dsharp4',
+        soundFileOffline: 'src/media/notes/dsharp4.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/dsharp4.mp4',
+        octave: 4
+    },
+
+    {
+        name: 'e4',
+        soundFileOffline: 'src/media/notes/e4.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/e4.mp4',
+        octave: 4
+    },
+
+    {
+        name: 'f4',
+        soundFileOffline: 'src/media/notes/f4.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/f4.mp4',
+        octave: 4
+    },
+
+    {
+        name: 'fsharp4',
+        soundFileOffline: 'src/media/notes/fsharp4.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/fsharp4.mp4',
+        octave: 4
+    },
+
+    {
+        name: 'g4',
+        soundFileOffline: 'src/media/notes/g4.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/g4.mp4',
+        octave: 4
+    },
+
+    {
+        name: 'gsharp4',
+        soundFileOffline: 'src/media/notes/gsharp4.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/gsharp4.mp4',
+        octave: 4
+    },
+
+    {
+        name: 'a4',
+        soundFileOffline: 'src/media/notes/a4.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/a4.mp4',
+        octave: 4
+    },
+
+    {
+        name: 'asharp4',
+        soundFileOffline: 'src/media/notes/asharp4.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/asharp4.mp4',
+        octave: 4
+    },
+
+    {
+        name: 'b4',
+        soundFileOffline: 'src/media/notes/b4.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/b4.mp4',
+        octave: 4
+    },
+
+    {
+        name: 'c5',
+        soundFileOffline: 'src/media/notes/c5.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/c5.mp4',
+        octave: 5
+    },
+
+    {
+        name: 'csharp5',
+        soundFileOffline: 'src/media/notes/csharp5.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/csharp5.mp4',
+        octave: 5
+    },
+
+    {
+        name: 'd5',
+        soundFileOffline: 'src/media/notes/d5.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/d5.mp4',
+        octave: 5
+    },
+
+    {
+        name: 'dsharp5',
+        soundFileOffline: 'src/media/notes/dsharp5.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/dsharp5.mp4',
+        octave: 5
+    },
+
+    {
+        name: 'e5',
+        soundFileOffline: 'src/media/notes/e5.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/e5.mp4',
+        octave: 5
+    },
+
+    {
+        name: 'f5',
+        soundFileOffline: 'src/media/notes/f5.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/f5.mp4',
+        octave: 5
+    },
+
+    {
+        name: 'fsharp5',
+        soundFileOffline: 'src/media/notes/fsharp5.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/fsharp5.mp4',
+        octave: 5
+    },
+
+    {
+        name: 'g5',
+        soundFileOffline: 'src/media/notes/g5.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/g5.mp4',
+        octave: 5
+    },
+
+    {
+        name: 'gsharp5',
+        soundFileOffline: 'src/media/notes/gsharp5.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/gsharp5.mp4',
+        octave: 5
+    },
+
+    {
+        name: 'a5',
+        soundFileOffline: 'src/media/notes/a5.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/a5.mp4',
+        octave: 5
+    },
+
+    {
+        name: 'asharp5',
+        soundFileOffline: 'src/media/notes/asharp5.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/asharp5.mp4',
+        octave: 5
+    },
+
+    {
+        name: 'b5',
+        soundFileOffline: 'src/media/notes/b5.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/b5.mp4',
+        octave: 5
+    },
+
+    {
+        name: 'c6',
+        soundFileOffline: 'src/media/notes/c6.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/c6.mp4',
+        octave: 6
+    },
+
+    {
+        name: 'csharp6',
+        soundFileOffline: 'src/media/notes/csharp6.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/csharp6.mp4',
+        octave: 6
+    },
+
+    {
+        name: 'd6',
+        soundFileOffline: 'src/media/notes/d6.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/d6.mp4',
+        octave: 6
+    },
+
+    {
+        name: 'dsharp6',
+        soundFileOffline: 'src/media/notes/dsharp6.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/dsharp6.mp4',
+        octave: 6
+    },
+
+    {
+        name: 'e6',
+        soundFileOffline: 'src/media/notes/e6.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/e6.mp4',
+        octave: 6
+    },
+
+    {
+        name: 'f6',
+        soundFileOffline: 'src/media/notes/f6.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/f6.mp4',
+        octave: 6
+    },
+
+    {
+        name: 'fsharp6',
+        soundFileOffline: 'src/media/notes/fsharp6.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/fsharp6.mp4',
+        octave: 6
+    },
+
+    {
+        name: 'g6',
+        soundFileOffline: 'src/media/notes/g6.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/g6.mp4',
+        octave: 6
+    },
+
+    {
+        name: 'gsharp6',
+        soundFileOffline: 'src/media/notes/gsharp6.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/gsharp6.mp4',
+        octave: 6
+    },
+
+    {
+        name: 'a6',
+        soundFileOffline: 'src/media/notes/a6.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/a6.mp4',
+        octave: 6
+    },
+
+    {
+        name: 'asharp6',
+        soundFileOffline: 'src/media/notes/asharp6.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/asharp6.mp4',
+        octave: 6
+    },
+
+    {
+        name: 'b6',
+        soundFileOffline: 'src/media/notes/b6.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/b6.mp4',
+        octave: 6
+    },
+
+    {
+        name: 'c7',
+        soundFileOffline: 'src/media/notes/c7.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/c7.mp4',
+        octave: 7
+    },
+
+    {
+        name: 'csharp7',
+        soundFileOffline: 'src/media/notes/csharp7.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/csharp7.mp4',
+        octave: 7
+    },
+
+    {
+        name: 'd7',
+        soundFileOffline: 'src/media/notes/d7.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/d7.mp4',
+        octave: 7
+    },
+
+    {
+        name: 'dsharp7',
+        soundFileOffline: 'src/media/notes/dsharp7.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/dsharp7.mp4',
+        octave: 7
+    },
+
+    {
+        name: 'e7',
+        soundFileOffline: 'src/media/notes/e7.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/e7.mp4',
+        octave: 7
+    },
+
+    {
+        name: 'f7',
+        soundFileOffline: 'src/media/notes/f7.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/f7.mp4',
+        octave: 7
+    },
+
+    {
+        name: 'fsharp7',
+        soundFileOffline: 'src/media/notes/fsharp7.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/fsharp7.mp4',
+        octave: 7
+    },
+
+    {
+        name: 'g7',
+        soundFileOffline: 'src/media/notes/g7.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/g7.mp4',
+        octave: 7
+    },
+
+    {
+        name: 'gsharp7',
+        soundFileOffline: 'src/media/notes/gsharp7.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/gsharp7.mp4',
+        octave: 7
+    },
+
+    {
+        name: 'a7',
+        soundFileOffline: 'src/media/notes/a7.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/a7.mp4',
+        octave: 7
+    },
+
+    {
+        name: 'asharp7',
+        soundFileOffline: 'src/media/notes/asharp7.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/asharp7.mp4',
+        octave: 7
+    },
+
+    {
+        name: 'b7',
+        soundFileOffline: 'src/media/notes/b7.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/b7.mp4',
+        octave: 7
+    },
+
+    {
+        name: 'c8',
+        soundFileOffline: 'src/media/notes/c8.mp4',
+        soundFileOnline: 'https://javascriptbook.weebly.com/uploads/7/6/4/0/76407657/c8.mp4',
+        octave: 8
+    },
+];
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+// makeNotes.js
+
+function makeNotes(whichId, whichArray, whichX, whichY, whichOctave)
+{
+    let mainDiv = ce('div');
+    mainDiv.style.padding = 5 + 'px';
+    mainDiv.style.marginBottom = 5 + 'px';
+    mainDiv.style.display = 'flex';
+    mainDiv.style.flexDirection = 'row';
+    ba(mainDiv);
+
+    //-//
+
+    let subDiv = ce('div');
+    subDiv.id = whichId;
+    subDiv.style.width = 400 + 'px';
+    subDiv.style.height = '30px';
+    subDiv.style.border = 'solid 1px rgb(0, 200, 200)';
+    mainDiv.append(subDiv);
+
+    //-//
+
+    // makeElementDraggable(subDiv);
+
+    //-//
+
+    for (let i = 0; i < whichArray.length; i++)
+    {
+        if (whichArray[i].octave == whichOctave)
+        {
+            let note = ce('div');
+            note.id = whichArray[i].name;
+            note.title = whichArray[i].name;
+            note.style.position = 'absolute';
+            note.style.left = whichX + 'px';
+            note.style.width = 20 + 'px';
+            note.style.height = 20 + 'px';
+            note.style.border = 'solid 2px rgb(0, 0, 0)';
+            note.onclick = function()
+            {
+                audioPlay(whichArray[i].name + '_note', 1.0);
+            };
+
+            //-//
+
+            if (whichArray[i].name.length <= 3)
+            {
+                note.className = 'natural';
+                note.textContent = whichArray[i].name;
+            }
+            else if (whichArray[i].name.length > 3)
+            {
+                note.className = 'sharp';
+
+                note.textContent = whichArray[i].name.replace('sharp', '#');
+            }
+            subDiv.append(note);
+
+            // move to the next note position
+            whichX += 30;
+        }
+    }
+}
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+// makeTitleOfApp.js
+
+function makeTitleOfApp()
+{
+    let titleContainer = ce('div');
+    titleContainer.style.position = 'absolute';
+    titleContainer.style.right = '10px';
+    titleContainer.style.bottom = '10px';
+    titleContainer.style.zIndex = 1;
+    ba(titleContainer);
+
+    //-//
+
+    let titleOfApp = ce('a');
+    titleOfApp.id = 'titleOfApp';
+    titleOfApp.textContent = 'Topalian JavaScript Piano';
+    titleOfApp.href = 'https://github.com/christophertopalian';
+    titleOfApp.target = '_blank';
+    titleOfApp.style.fontSize = '17px';
+    titleOfApp.style.fontWeight = 'bold';
+    titleContainer.append(titleOfApp);
+}
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+// menuHarmonicMinorScales.js
+
+function menuHarmonicMinorScales()
+{
+    let theId = 'harmonicMinorScales';
+
+    //-//
+
+    let mainDiv = ce("div");
+    mainDiv.id = theId;
+    mainDiv.style.position = "absolute";
+    mainDiv.style.right = 265 +'px';
+    mainDiv.style.top = 20 + 'px';
+    mainDiv.style.width = 150 + 'px';
+    mainDiv.style.height = '150px';
+    mainDiv.style.zIndex = '3';
+    mainDiv.style.overflowY = 'scroll';
+    mainDiv.style.display = 'flex';
+    mainDiv.style.flexDirection = 'column';
+    mainDiv.style.resize = 'both';
+    ba(mainDiv);
+
+    makeElementDraggable(mainDiv);
+
+    //-//
+
+    let subDiv = ce('div');
+    subDiv.textContent = 'Harmonic Minor';
+    subDiv.style.color = 'rgb(255, 255, 255)';
+    mainDiv.append(subDiv);
+
+    //-//
+
+    subDiv.append(ce('br'));
+
+    //-//
+
+    let aButton = ce('button');
+    aButton.textContent = 'A';
+    aButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(aHarmonicMinorScale);
+    };
+    subDiv.append(aButton);
+
+    //-//
+
+    let asharpButton = ce('button');
+    asharpButton.id = 'asharpButton';
+    asharpButton.textContent = 'A# ';
+    asharpButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(asharpHarmonicMinorScale);
+    };
+    subDiv.append(asharpButton);
+
+    //-//
+
+    let bButton = ce('button');
+    bButton.textContent = 'B ';
+    bButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(bHarmonicMinorScale);
+    };
+    subDiv.append(bButton);
+
+    //-//
+
+    let cButton = ce('button');
+    cButton.id = 'cButton';
+    cButton.textContent = 'C ';
+    cButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(cHarmonicMinorScale);
+    };
+    subDiv.append(cButton);
+
+    //-//
+
+    let csharpButton = ce('button');
+    csharpButton.textContent = 'C# ';
+    csharpButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(csharpHarmonicMinorScale);
+    };
+    subDiv.append(csharpButton);
+
+    //-//
+
+    let dButton = ce('button');
+    dButton.textContent = 'D ';
+    dButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(dHarmonicMinorScale);
+    };
+    subDiv.append(dButton);
+
+    //-//
+
+    let dsharpButton = ce('button');
+    dsharpButton.textContent = 'D#';
+    dsharpButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(dsharpHarmonicMinorScale);
+    };
+    subDiv.append(dsharpButton);
+
+    //-//
+
+    let eButton = ce('button');
+    eButton.textContent = 'E ';
+    eButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(eHarmonicMinorScale);
+    };
+    subDiv.append(eButton);
+
+    //-//
+
+    let fButton = ce('button');
+    fButton.textContent = 'F ';
+    fButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(fHarmonicMinorScale);
+    };
+    subDiv.append(fButton);
+
+    //-//
+
+    let fsharpButton = ce('button');
+    fsharpButton.textContent = 'F# ';
+    fsharpButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(fsharpHarmonicMinorScale);
+    };
+    subDiv.append(fsharpButton);
+
+    //-//
+
+    let gButton = ce('button');
+    gButton.textContent = 'G ';
+    gButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(gHarmonicMinorScale);
+    };
+    subDiv.append(gButton);
+
+    //-//
+
+    let gsharpButton = ce('button');
+    gsharpButton.textContent = 'G# ';
+    gsharpButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(gsharpHarmonicMinorScale);
+    };
+    subDiv.append(gsharpButton);
+}
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+// menuMajorScales.js
+
+function menuMajorScales()
+{
+    let theId = 'menuScales';
+
+    //-//
+
+    let mainDiv = ce("div");
+    mainDiv.id = theId;
+    mainDiv.style.position = "absolute";
+    mainDiv.style.right = 100 +'px';
+    mainDiv.style.top = 20 + 'px';
+    mainDiv.style.width = 150 + 'px';
+    mainDiv.style.height = '150px';
+    mainDiv.style.zIndex = '3';
+    mainDiv.style.overflowY = 'scroll';
+    mainDiv.style.display = 'flex';
+    mainDiv.style.flexDirection = 'column';
+    mainDiv.style.resize = 'both';
+    ba(mainDiv);
+
+    makeElementDraggable(mainDiv);
+
+    //-//
+
+    let subDiv = ce('div');
+    subDiv.textContent = 'Major';
+    subDiv.style.color = 'rgb(255, 255, 255)';
+    mainDiv.append(subDiv);
+
+    //-//
+
+    subDiv.append(ce('br'));
+
+    //-//
+
+    let aButton = ce('button');
+    aButton.textContent = 'A';
+    aButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(aMajorScale);
+    };
+    subDiv.append(aButton);
+
+    //-//
+
+    let asharpButton = ce('button');
+    asharpButton.textContent = 'A# ';
+    asharpButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(asharpMajorScale);
+    };
+    subDiv.append(asharpButton);
+
+    //-//
+
+    let bButton = ce('button');
+    bButton.textContent = 'B ';
+    bButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(bMajorScale);
+    };
+    subDiv.append(bButton);
+
+    //-//
+
+    let cButton = ce('button');
+    cButton.textContent = 'C ';
+    cButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(cMajorScale);
+    };
+    subDiv.append(cButton);
+
+    //-//
+
+    let csharpButton = ce('button');
+    csharpButton.textContent = 'C# ';
+    csharpButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(csharpMajorScale);
+    };
+    subDiv.append(csharpButton);
+
+    //-//
+
+    let dButton = ce('button');
+    dButton.textContent = 'D';
+    dButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(dMajorScale);
+    };
+    subDiv.append(dButton);
+
+    //-//
+
+    let dsharpButton = ce('button');
+    dsharpButton.textContent = 'D#';
+    dsharpButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(dsharpMajorScale);
+    };
+    subDiv.append(dsharpButton);
+
+    //-//
+
+    let eButton = ce('button');
+    eButton.textContent = 'E ';
+    eButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(eMajorScale);
+    };
+    subDiv.append(eButton);
+
+    //-//
+
+    let fButton = ce('button');
+    fButton.textContent = 'F ';
+    fButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(fMajorScale);
+    };
+    subDiv.append(fButton);
+
+    //-//
+
+    let fsharpButton = ce('button');
+    fsharpButton.textContent = 'F# ';
+    fsharpButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(fsharpMajorScale);
+    };
+    subDiv.append(fsharpButton);
+
+    //-//
+
+    let gButton = ce('button');
+    gButton.textContent = 'G ';
+    gButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(gMajorScale);
+    };
+    subDiv.append(gButton);
+
+    //-//
+
+    let gsharpButton = ce('button');
+    gsharpButton.textContent = 'G# ';
+    gsharpButton.onclick = function()
+    {
+        clearScales();
+        colorScale7(gsharpMajorScale);
+    };
+    subDiv.append(gsharpButton);
+}
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+// whichKeyPressed.js
+
+function clickColor(whichId)
+{
+    ge(whichId).click();
+
+    ge(whichId).style.borderColor = highlight;
+
+    setTimeout(function()
+    {
+        ge(whichId).style.borderColor = sharp;
+    }, 500);
+}
+
+let controlFlag = 1;
+
+function whichKeyPressed(event)
+{
+    let level1 = 1;
+    let level2 = 2;
+    let level3 = 3;
+    let level4 = 4;
+
+    if (controlFlag == 1)
+    {
+        level1 = 1;
+        level2 = 2;
+        level3 = 3;
+        level4 = 4;
+    }
+
+    else if (controlFlag == 2)
+    {
+        level1 = 4;
+        level2 = 5;
+        level3 = 6;
+        level4 = 7;
+    }
+
+    /*
+    else if(controlFlag == 3)
+    {
+        level1 = 3;
+        level2 = 4;
+        level3 = 5;
+        level4 = 6;
+    }
+
+    else if(controlFlag == 4)
+    {
+        level1 = 4;
+        level2 = 5;
+        level3 = 6;
+        level4 = 7;
+    }
+
+    else if(controlFlag == 5)
+    {
+        level1 = 5;
+        level2 = 6;
+        level3 = 7;
+        level4 = 8;
+    }
+    */
+
+    event.preventDefault();
+
+    if (event.code === 'ShiftLeft')
+    {
+        clickColor('c' + level1);
+    }
+
+    else if (event.code === 'KeyZ')
+    {
+        clickColor('csharp' + level1);
+    }
+
+    else if (event.code === 'KeyX')
+    {
+        clickColor('d' + level1);
+    }
+
+    else if (event.code === 'KeyC')
+    {
+        clickColor('dsharp' + level1);
+    }
+
+    else if (event.code === 'KeyV')
+    {
+        clickColor('e' + level1);
+    }
+    else if (event.code === 'KeyB')
+    {
+        clickColor('f' + level1);
+    }
+    else if (event.code === 'KeyN')
+    {
+        clickColor('fsharp' + level1);
+    }
+    else if (event.code === 'KeyM')
+    {
+        clickColor('g' + level1);
+    }
+    else if (event.code === 'Comma')
+    {
+        clickColor('gsharp' + level1);
+    }
+    else if (event.code === 'Period') // slash
+    {
+        clickColor('a' + level1);
+    }
+    else if (event.code === 'Slash') // slash
+    {
+        clickColor('asharp' + level1);
+    }
+
+    else if (event.code === 'ShiftRight')
+    {
+        clickColor('b' + level1);
+    }
+
+    //-//
+
+    else if (event.code === 'CapsLock')
+    {
+        clickColor('c' + level2);
+    }
+
+    else if (event.code === 'KeyA')
+    {
+        clickColor('csharp' + level2);
+    }
+
+    else if (event.code === 'KeyS')
+    {
+        clickColor('d' + level2);
+    }
+
+    else if (event.code === 'KeyD')
+    {
+        clickColor('dsharp' + level2);
+    }
+
+    else if (event.code === 'KeyF')
+    {
+        clickColor('e' + level2);
+    }
+
+    else if (event.code === 'KeyG')
+    {
+        clickColor('f' + level2);
+    }
+
+    else if (event.code === 'KeyH')
+    {
+        clickColor('fsharp' + level2);
+    }
+
+    else if (event.code === 'KeyJ')
+    {
+        clickColor('g' + level2);
+    }
+
+    else if (event.code === 'KeyK')
+    {
+        clickColor('gsharp' + level2);
+    }
+
+    else if (event.code === 'KeyL')
+    {
+        clickColor('a' + level2);
+    }
+
+    else if (event.code === 'Semicolon')
+    {
+        clickColor('asharp' + level2);
+    }
+
+    else if (event.code === 'Quote')
+    {
+        clickColor('b' + level2);
+    }
+
+    //-//
+
+    else if (event.code === 'Tab')
+    {
+        clickColor('c' + level3);
+    }
+
+    else if (event.code === 'KeyQ')
+    {
+        clickColor('csharp' + level3);
+    }
+
+    else if (event.code === 'KeyW')
+    {
+        clickColor('d' + level3);
+    }
+
+    else if (event.code === 'KeyE')
+    {
+        clickColor('dsharp' + level3);
+    }
+
+    else if (event.code === 'KeyR')
+    {
+        clickColor('e' + level3);
+    }
+
+    else if (event.code === 'KeyT')
+    {
+        clickColor('f' + level3);
+    }
+
+    else if (event.code === 'KeyY')
+    {
+        clickColor('fsharp' + level3);
+    }
+
+    else if (event.code === 'KeyU')
+    {
+        clickColor('g' + level3);
+    }
+
+    else if (event.code === 'KeyI')
+    {
+        clickColor('gsharp' + level3);
+    }
+
+    else if (event.code === 'KeyO')
+    {
+        clickColor('a' + level3);
+    }
+
+    else if (event.code === 'KeyP')
+    {
+        clickColor('asharp' + level3);
+    }
+
+    else if (event.code === 'BracketLeft')
+    {
+        clickColor('b' + level3);
+    }
+
+    //-//
+
+    else if (event.code === 'Backquote') // ~
+    {
+        clickColor('c' + level4);
+    }
+
+    else if (event.code === 'Digit1')
+    {
+        clickColor('csharp' + level4);
+    }
+
+    else if (event.code === 'Digit2')
+    {
+        clickColor('d' + level4);
+    }
+
+    else if (event.code === 'Digit3')
+    {
+        clickColor('dsharp' + level4);
+    }
+
+    else if (event.code === 'Digit4')
+    {
+        clickColor('e' + level4);
+    }
+
+    else if (event.code === 'Digit5')
+    {
+        clickColor('f' + level4);
+    }
+
+    else if (event.code === 'Digit6')
+    {
+        clickColor('fsharp' + level4);
+    }
+
+    else if (event.code === 'Digit7')
+    {
+        clickColor('g' + level4);
+    }
+
+    else if (event.code === 'Digit8')
+    {
+        clickColor('gsharp' + level4);
+    }
+
+    else if (event.code === 'Digit9')
+    {
+        clickColor('a' + level4);
+    }
+
+    else if (event.code === 'Digit0')
+    {
+        clickColor('asharp' + level4);
+    }
+
+    else if (event.code === 'Minus')
+    {
+        clickColor('b' + level4);
+    }
+
+    //-//
+
+    else if (event.code === 'ArrowUp')
+    {
+        if (controlFlag < 2)
+        {
+            controlFlag += 1;
+        }
+    }
+
+    else if (event.code === 'ArrowDown')
+    {
+        if (controlFlag > 1)
+        {
+            controlFlag -= 1;
+        }
+    }
+}
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+// clearScales.js
+
+function clearScales()
+{
+    color('c1', natural);
+    color('csharp1', sharp);
+    color('d1', natural);
+    color('dsharp1', sharp);
+    color('e1', natural);
+    color('f1', natural);
+    color('fsharp1', sharp);
+    color('g1', natural);
+    color('gsharp1', sharp);
+    color('a1', natural);
+    color('asharp1', sharp);
+    color('b1', natural);
+
+    //-//
+
+    color('c2', natural);
+    color('csharp2', sharp);
+    color('d2', natural);
+    color('dsharp2', sharp);
+    color('e2', natural);
+    color('f2', natural);
+    color('fsharp2', sharp);
+    color('g2', natural);
+    color('gsharp2', sharp);
+    color('a2', natural);
+    color('asharp2', sharp);
+    color('b2', natural);
+
+    //-//
+
+    color('c3', natural);
+    color('csharp3', sharp);
+    color('d3', natural);
+    color('dsharp3', sharp);
+    color('e3', natural);
+    color('f3', natural);
+    color('fsharp3', sharp);
+    color('g3', natural);
+    color('gsharp3', sharp);
+    color('a3', natural);
+    color('asharp3', sharp);
+    color('b3', natural);
+
+    //-//
+
+    color('c4', natural);
+    color('csharp4', sharp);
+    color('d4', natural);
+    color('dsharp4', sharp);
+    color('e4', natural);
+    color('f4', natural);
+    color('fsharp4', sharp);
+    color('g4', natural);
+    color('gsharp4', sharp);
+    color('a4', natural);
+    color('asharp4', sharp);
+    color('b4', natural);
+
+    //-//
+
+    color('c5', natural);
+    color('csharp5', sharp);
+    color('d5', natural);
+    color('dsharp5', sharp);
+    color('e5', natural);
+    color('f5', natural);
+    color('fsharp5', sharp);
+    color('g5', natural);
+    color('gsharp5', sharp);
+    color('a5',natural);
+    color('asharp5', sharp);
+    color('b5', natural);
+
+    //-//
+
+    color('c6', natural);
+    color('csharp6', sharp);
+    color('d6', natural);
+    color('dsharp6', sharp);
+    color('e6', natural);
+    color('f6', natural);
+    color('fsharp6', sharp);
+    color('g6', natural);
+    color('gsharp6', sharp);
+    color('a6', natural);
+    color('asharp6', sharp);
+    color('b6', natural);
+
+    //-//
+
+    color('c7', natural);
+    color('csharp7', sharp);
+    color('d7', natural);
+    color('dsharp7', sharp);
+    color('e7', natural);
+    color('f7', natural);
+    color('fsharp7', sharp);
+    color('g7', natural);
+    color('gsharp7', sharp);
+    color('a7', natural);
+    color('asharp7', sharp);
+    color('b7', natural);
+
+    //-//
+
+    color('c8', natural);
+}
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+// color.js
+
+function color(whichId, whichColor)
+{
+    let element = ge(whichId);
+
+    if (element)
+    {
+        element.style.backgroundColor = whichColor;
+    }
+    else
+    {
+        console.log("Element with id " + whichId + " not found.");
+    }
+}
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+// colorScale7.js
+
+function colorScale7(whichArray)
+{
+    color(whichArray[0] + 1, highlight);
+    color(whichArray[1] + 1, highlight);
+    color(whichArray[2] + 1, highlight);
+    color(whichArray[3] + 1, highlight);
+    color(whichArray[4] + 1, highlight);
+    color(whichArray[5] + 1, highlight);
+    color(whichArray[6] + 1, highlight);
+
+    //-//
+
+    color(whichArray[0] + 2, highlight);
+    color(whichArray[1] + 2, highlight);
+    color(whichArray[2] + 2, highlight);
+    color(whichArray[3] + 2, highlight);
+    color(whichArray[4] + 2, highlight);
+    color(whichArray[5] + 2, highlight);
+    color(whichArray[6] + 2, highlight);
+
+    //-//
+
+    color(whichArray[0] + 3, highlight);
+    color(whichArray[1] + 3, highlight);
+    color(whichArray[2] + 3, highlight);
+    color(whichArray[3] + 3, highlight);
+    color(whichArray[4] + 3, highlight);
+    color(whichArray[5] + 3, highlight);
+    color(whichArray[6] + 3, highlight);
+
+    //-//
+
+    color(whichArray[0] + 4, highlight);
+    color(whichArray[1] + 4, highlight);
+    color(whichArray[2] + 4, highlight);
+    color(whichArray[3] + 4, highlight);
+    color(whichArray[4] + 4, highlight);
+    color(whichArray[5] + 4, highlight);
+    color(whichArray[6] + 4, highlight);
+
+    //-//
+
+    color(whichArray[0] + 5, highlight);
+    color(whichArray[1] + 5, highlight);
+    color(whichArray[2] + 5, highlight);
+    color(whichArray[3] + 5, highlight);
+    color(whichArray[4] + 5, highlight);
+    color(whichArray[5] + 5, highlight);
+    color(whichArray[6] + 5, highlight);
+
+    //-//
+
+    color(whichArray[0] + 6, highlight);
+    color(whichArray[1] + 6, highlight);
+    color(whichArray[2] + 6, highlight);
+    color(whichArray[3] + 6, highlight);
+    color(whichArray[4] + 6, highlight);
+    color(whichArray[5] + 6, highlight);
+    color(whichArray[6] + 6, highlight);
+
+    //-//
+
+    color(whichArray[0] + 7, highlight);
+    color(whichArray[1] + 7, highlight);
+    color(whichArray[2] + 7, highlight);
+    color(whichArray[3] + 7, highlight);
+    color(whichArray[4] + 7, highlight);
+    color(whichArray[5] + 7, highlight);
+    color(whichArray[6] + 7, highlight);
+
+    //-//
+
+    color(whichArray[0] + 8, highlight);
+    color(whichArray[1] + 8, highlight);
+    color(whichArray[2] + 8, highlight);
+    color(whichArray[3] + 8, highlight);
+    color(whichArray[4] + 8, highlight);
+    color(whichArray[5] + 8, highlight);
+    color(whichArray[6] + 8, highlight);
+}
+
+/*
+function colorScale7(whichArray)
+{
+    for (let i = 0; i < whichArray.length; i++) {
+        for (let j = 1; j <= 8; j++)
+        {
+            let idToColor = whichArray[i] + j;
+            color(idToColor, highlight);
+        }
+    }
+}
+*/
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+// colorScale8.js
+
+function colorScale8(whichArray)
+{
+    color(whichArray[0] + 1, highlight);
+    color(whichArray[1] + 1, highlight);
+    color(whichArray[2] + 1, highlight);
+    color(whichArray[3] + 1, highlight);
+    color(whichArray[4] + 1, highlight);
+    color(whichArray[5] + 1, highlight);
+    color(whichArray[6] + 1, highlight);
+    color(whichArray[7] + 1, highlight);
+
+    //-//
+
+    color(whichArray[0] + 2, highlight);
+    color(whichArray[1] + 2, highlight);
+    color(whichArray[2] + 2, highlight);
+    color(whichArray[3] + 2, highlight);
+    color(whichArray[4] + 2, highlight);
+    color(whichArray[5] + 2, highlight);
+    color(whichArray[6] + 2, highlight);
+    color(whichArray[7] + 2, highlight);
+
+    //-//
+
+    color(whichArray[0] + 3, highlight);
+    color(whichArray[1] + 3, highlight);
+    color(whichArray[2] + 3, highlight);
+    color(whichArray[3] + 3, highlight);
+    color(whichArray[4] + 3, highlight);
+    color(whichArray[5] + 3, highlight);
+    color(whichArray[6] + 3, highlight);
+    color(whichArray[7] + 3, highlight);
+
+    //-//
+
+    color(whichArray[0] + 4, highlight);
+    color(whichArray[1] + 4, highlight);
+    color(whichArray[2] + 4, highlight);
+    color(whichArray[3] + 4, highlight);
+    color(whichArray[4] + 4, highlight);
+    color(whichArray[5] + 4, highlight);
+    color(whichArray[6] + 4, highlight);
+    color(whichArray[7] + 4, highlight);
+
+    //-//
+
+    color(whichArray[0] + 5, highlight);
+    color(whichArray[1] + 5, highlight);
+    color(whichArray[2] + 5, highlight);
+    color(whichArray[3] + 5, highlight);
+    color(whichArray[4] + 5, highlight);
+    color(whichArray[5] + 5, highlight);
+    color(whichArray[6] + 5, highlight);
+    color(whichArray[7] + 5, highlight);
+
+    //-//
+
+    color(whichArray[0] + 6, highlight);
+    color(whichArray[1] + 6, highlight);
+    color(whichArray[2] + 6, highlight);
+    color(whichArray[3] + 6, highlight);
+    color(whichArray[4] + 6, highlight);
+    color(whichArray[5] + 6, highlight);
+    color(whichArray[6] + 6, highlight);
+    color(whichArray[7] + 6, highlight);
+
+    //-//
+
+    color(whichArray[0] + 7, highlight);
+    color(whichArray[1] + 7, highlight);
+    color(whichArray[2] + 7, highlight);
+    color(whichArray[3] + 7, highlight);
+    color(whichArray[4] + 7, highlight);
+    color(whichArray[5] + 7, highlight);
+    color(whichArray[6] + 7, highlight);
+    color(whichArray[7] + 7, highlight);
+
+    color(whichArray[0] + 8, highlight);
+    color(whichArray[1] + 8, highlight);
+    color(whichArray[2] + 8, highlight);
+    color(whichArray[3] + 8, highlight);
+    color(whichArray[4] + 8, highlight);
+    color(whichArray[5] + 8, highlight);
+    color(whichArray[6] + 8, highlight);
+}
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+// harmonicMinorScale.js
+
+let aHarmonicMinorScale = [ "a", "b", "c", "d", "e", "f", "gsharp" ];
+
+let asharpHarmonicMinorScale = [ "asharp", "c", "csharp", "dsharp", "f", "fsharp", "a" ];
+
+let bHarmonicMinorScale = [ "b", "csharp", "d", "e", "fsharp", "g", "asharp" ];
+
+let cHarmonicMinorScale = [ "c", "d", "dsharp", "f", "g", "gsharp", "b" ];
+
+let csharpHarmonicMinorScale = [ "csharp", "dsharp", "e", "fsharp", "gsharp", "a", "c" ];
+
+let dHarmonicMinorScale = [ "d", "e", "f", "g", "a", "asharp", "csharp" ];
+
+let dsharpHarmonicMinorScale = [ "dsharp", "f", "fsharp", "gsharp", "asharp", "b", "d" ];
+
+let eHarmonicMinorScale = [ "e", "fsharp", "g", "a", "b", "c", "dsharp" ];
+
+let fHarmonicMinorScale = [ "f", "g", "gsharp", "asharp", "c", "csharp", "e" ];
+
+let fsharpHarmonicMinorScale = [ "fsharp", "gsharp", "a", "b", "csharp", "d", "f" ];
+
+let gHarmonicMinorScale = [ "g", "a", "asharp", "c", "d", "dsharp", "fsharp" ];
+
+let gsharpHarmonicMinorScale = [ "gsharp", "asharp", "b", "csharp", "dsharp", "e", "g" ];
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+// majorScale.js
+
+let aMajorScale = [ "a", "b", "csharp", "d", "e", "fsharp", "gsharp" ];
+
+let asharpMajorScale = ["asharp", "c", "csharp", "dsharp", "f", "fsharp", "gsharp"];
+
+let bMajorScale = [ "b", "csharp", "dsharp", "e", "fsharp", "gsharp", "asharp" ];
+
+let cMajorScale = [ "c", "d", "e", "f", "g", "a", "b" ];
+
+let csharpMajorScale = [ "csharp", "dsharp", "e", "fsharp", "gsharp", "asharp", "b" ];
+
+let dMajorScale = [ "d", "e", "fsharp", "g", "a", "b", "csharp" ];
+
+let dsharpMajorScale = [ "dsharp", "f", "fsharp", "gsharp", "asharp", "c", "csharp" ];
+
+let eMajorScale = [ "e", "fsharp", "gsharp", "a", "b", "csharp", "dsharp" ];
+
+let fMajorScale = [ "f", "g", "a", "asharp", "c", "d", "e" ];
+
+let fsharpMajorScale = [ "fsharp", "gsharp", "asharp", "b", "csharp", "dsharp", "f" ];
+
+let gMajorScale = [ "g", "a", "b", "c", "d", "e", "fsharp" ];
+
+let gsharpMajorScale = [ "gsharp", "asharp", "b", "csharp", "dsharp", "f", "fsharp" ];
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+// audioPlay.js
+
+function audioPlay(noteId, volume)
+{
+    let audioElement = ge(noteId);
+
+    if (audioElement)
+    {
+        audioElement.volume = volume;
+        audioElement.currentTime = 0.05;
+        audioElement.play();
+    }
+}
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+// loadSounds.js
+
+function loadSounds(whichArray)
+{
+    for (let x = 0; x < whichArray.length; x++)
+    {
+        let theSound = ce('audio');
+
+        if (online == false)
+        {
+            theSound.src = whichArray[x].soundFileOffline;
+        }
+        else
+        {
+            theSound.src = whichArray[x].soundFileOnline;
+        }
+
+        theSound.id = whichArray[x].name + '_note';
+        theSound.loop = false;
+        theSound.volume = 1.0;
+        ba(theSound);
+    }
+}
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+// sounds.js
+
+let sounds =
+[
+    {
+        name: 'sfx_blip_001',
+        soundFileOffline: 'src/media/sounds/sfx_blip_001.mp4',
+        soundFileOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/sfx_blip_001.mp4'
+    },
+
+    {
+        name: 'sfx_warp_001',
+        soundFileOffline: 'src/media/sounds/sfx_warp_001.mp3',
+        soundFileOnline: 'https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/sfx_warp_001.mp3'
+    },
+];
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+// makeElementDraggable.js
+
+// creating event handler for mouse down
+function createMouseDownHandler(element, state) {
+    return function(e)
+    {
+        // ignore mouse down events on textarea or input elements
+        if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT')
+        {
+            return;
+        }
+
+        e.preventDefault();
+
+        state.startX = e.clientX;
+        state.startY = e.clientY;
+
+        document.onmousemove = createMouseMoveHandler(element, state);
+
+        document.onmouseup = createMouseUpHandler();
+    };
+}
+
+// creating event handler for mouse move
+function createMouseMoveHandler(element, state) {
+    return function(e)
+    {
+        // ignore mouse move events on textarea or input elements
+        if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT')
+        {
+            return;
+        }
+
+        e.preventDefault();
+
+        let deltaX = state.startX - e.clientX;
+        let deltaY = state.startY - e.clientY;
+
+        state.startX = e.clientX;
+        state.startY = e.clientY;
+
+        let newTop = element.offsetTop - deltaY;
+        let newLeft = element.offsetLeft - deltaX;
+
+        element.style.top = newTop + "px";
+        element.style.left = newLeft + "px";
+    };
+}
+
+// creating event handler for mouse up
+function createMouseUpHandler()
+{
+    return function()
+    {
+        document.onmousemove = null;
+        document.onmouseup = null;
+    };
+}
+
+// make an element draggable
+function makeElementDraggable(element)
+{
+    let state = { startX: 0, startY: 0 };
+
+    element.onmousedown = createMouseDownHandler(element, state);
+}
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+// whenLoaded.js
+
+function whenLoaded()
+{
+    loadSounds(sounds);
+    loadSounds(notes);
+
+    window.addEventListener("keydown", whichKeyPressed, false);
+
+    makeTitleOfApp();
+
+    menuMajorScales();
+    menuHarmonicMinorScales();
+
+    makeNotes('octave8', notes, 20, 340, 8);
+    makeNotes('octave7', notes, 20, 340, 7);
+    makeNotes('octave6', notes, 20, 340, 6);
+    makeNotes('octave5', notes, 20, 340, 5);
+    makeNotes('octave4', notes, 20, 340, 4);
+    makeNotes('octave3', notes, 20, 340, 3);
+    makeNotes('octave2', notes, 20, 340, 2);
+    makeNotes('octave1', notes, 20, 340, 1);
+}
+
+//--//
+
+// Dedicated to God the Father
+// All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024
+// https://github.com/ChristopherTopalian
+// https://github.com/ChristopherAndrewTopalian
+
+</script>
+
+</head>
+
+<body onload = 'whenLoaded();'>
+
+</body>
+
+</html>
+
